@@ -30,7 +30,7 @@ The LAMP stack is a popular web development environment consisting of Linux as t
 4. Run the Ansible playbook:
    ansible-playbook -i inventory.ini lamp_playbook.yml
    This will execute the playbook and set up the LAMP stack on the specified CentOS servers.
-5. After completion, you can access the web server by navigating to [http://<server-ip>] in your web browser.
+5. After completion, you can access the web server by navigating to [http://"server-ip"] in your web browser.
 # Customization
 You can customize the playbook by modifying the following files:
 
