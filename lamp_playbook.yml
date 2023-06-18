@@ -1,0 +1,49 @@
+---
+- name: Install LAMP stack on CentOS
+  hosts: your_centos_server
+  become: true
+
+  tasks:
+    - name: Update package cache
+      yum:
+        name: '*'
+        state: latest
+        exclude: kernel*
+      register: yum_update_result
+
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: latest
+
+    - name: Start Apache service
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: Install MySQL
+      yum:
+        name: mysql-server
+        state: latest
+
+    - name: Start MySQL service
+      service:
+        name: mysqld
+        state: started
+        enabled: true
+
+    - name: Secure MySQL installation
+      command: mysql_secure_installation
+      args:
+        creates: /root/.mysql_secure_installation
+
+    - name: Install PHP
+      yum:
+        name: php
+        state: latest
+
+    - name: Restart Apache service
+      service:
+        name: httpd
+        state: restarted
